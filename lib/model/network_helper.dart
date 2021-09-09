@@ -14,12 +14,11 @@ class NetworkHelper {
         // print(data);
         print('ok 1');
         for (var u in data) {
-          // products.add(Product.extract(u));
-          data.map((e) => products.add(Product.fromJson(u))).toList();
+          products.add(Product.fromJson(u));
+          // data.map((e) => products.add(Product.fromJson(u))).toList();
         }
         print('ok 11');
-        print(products);
-        // print(products[19].description);
+        // print(products);
         return products;
       }
     } catch (e) {
