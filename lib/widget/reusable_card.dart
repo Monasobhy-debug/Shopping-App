@@ -39,7 +39,6 @@ class ReusableCard extends StatelessWidget {
                     ),
                   ),
                   labelStyle: TextStyle(color: Colors.purple),
-                  border: InputBorder.none,
                   labelText: text,
                   enabledBorder: OutlineInputBorder(
                     borderSide: BorderSide(
