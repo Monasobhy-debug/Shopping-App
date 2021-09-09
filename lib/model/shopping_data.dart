@@ -1,18 +1,19 @@
 import 'package:flutter/cupertino.dart';
 import 'package:shopping_app/model/network_helper.dart';
-import 'package:shopping_app/screens/card_page.dart';
+import 'package:shopping_app/screens/cart_page.dart';
 import 'package:shopping_app/screens/favorite_page.dart';
 import 'package:shopping_app/screens/home-page.dart';
-
-import 'model/product.dart';
+import 'package:shopping_app/model/product.dart';
+import 'product.dart';
 
 class ShoppingData extends ChangeNotifier {
   List<Product> favorite = [];
   List<Product> cart = [];
   List<Product> data = [];
+
   int _currantTap = 0;
 
-  List<Widget> screens = [HomePage(), FavoritePage(), CardPage()];
+  List<Widget> screens = [HomePage(), FavoritePage(), CartPage()];
   set currantTap(int tap) {
     this._currantTap = tap;
     notifyListeners();
@@ -20,18 +21,25 @@ class ShoppingData extends ChangeNotifier {
 
   int get currantTap => this._currantTap;
   Widget get currantScreen => this.screens[this._currantTap];
-  Future getData() async {
-    this.data = await NetworkHelper().fetchData();
-    print('ok data');
+  void setData() async {
+    data = await NetworkHelper().fetchData();
 
+    // print('add data');
+    // print(data);
     notifyListeners();
   }
 
   void addFavorite(Product product) {
-    // final product = Product(title: title, image: image, price: price);
     favorite.add(product);
-    print('addfav');
-    print(favorite);
+    // print('add fav');
+    // print(favorite);
+    notifyListeners();
+  }
+
+  void removeFavorite(Product product) {
+    favorite.remove(product);
+    // print('remove fav');
+    // print(favorite);
     notifyListeners();
   }
 
@@ -42,10 +50,17 @@ class ShoppingData extends ChangeNotifier {
   }
 
   void addCart(Product product) {
-    // final product = Product(title: title, image: image, price: price);
     cart.add(product);
-    print('addcart');
-    print(cart);
+    // print('add cart');
+    // print(cart);
+
+    notifyListeners();
+  }
+
+  void removeCart(Product product) {
+    cart.remove(product);
+    // print('remove cart');
+    // print(cart);
 
     notifyListeners();
   }
@@ -62,7 +77,9 @@ class ShoppingData extends ChangeNotifier {
 
   void updateCart(Product product) {
     product.toBeCart();
-    print("UpdateCart");
+    // print("cart u ");
+    // print(product.isCart);
+    // print("UpdateCart");
     notifyListeners();
   }
 }

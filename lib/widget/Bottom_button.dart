@@ -30,12 +30,6 @@ class BottomButton extends StatelessWidget {
         ),
       ],
     );
-    //     ElevatedButton(
-    //   style: ButtonStyle(
-    //     backgroundColor: MaterialStateProperty.all(Colors.deepPurple),
-    //   ),
-    //   onPressed: () {},
-    //   child: Text(text, textAlign: TextAlign.center),
-    // );
+
   }
 }

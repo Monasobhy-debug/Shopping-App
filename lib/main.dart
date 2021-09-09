@@ -5,7 +5,7 @@ import 'package:shopping_app/screens/main_page.dart';
 import 'package:shopping_app/screens/sign_in_page.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:shopping_app/screens/splash_screen.dart';
-import 'package:shopping_app/shopping_data.dart';
+import 'package:shopping_app/model/shopping_data.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -15,7 +15,6 @@ void main() async {
 }
 
 class MyApp extends StatelessWidget {
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider<ShoppingData>(
@@ -25,7 +24,7 @@ class MyApp extends StatelessWidget {
         theme: ThemeData(
           primarySwatch: Colors.blue,
         ),
-        home: MainPage(),
+        home: SplashScreen(),
       ),
     );
   }

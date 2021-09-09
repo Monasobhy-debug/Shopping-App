@@ -1,16 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:shopping_app/model/product.dart';
-import 'package:shopping_app/shopping_data.dart';
+import 'package:shopping_app/model/shopping_data.dart';
 import 'package:shopping_app/widget/cloth_item.dart';
 
-class CardPage extends StatelessWidget {
-  List<Product> cart = [];
-
+class CartPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    print(cart);
     return Consumer<ShoppingData>(builder: (context, data, child) {
+      List<Product> cart = data.cart;
+      // print(cart);
+      // print('ok cart');
+
       return Scaffold(
           body:
               // (cart.isNotEmpty)
@@ -28,8 +29,6 @@ class CardPage extends StatelessWidget {
                       mainAxisSpacing: 10.0,
                     ),
                     itemBuilder: (BuildContext context, int index) {
-                      Provider.of<ShoppingData>(context).setCart(cart);
-                      print('ok cart');
                       return ClothItem(
                         product: cart[index],
                         image: cart[index].image,

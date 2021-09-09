@@ -3,22 +3,16 @@ import 'package:provider/provider.dart';
 import 'package:shopping_app/model/product.dart';
 import 'package:shopping_app/widget/cloth_item.dart';
 
-import '../shopping_data.dart';
+import '../model/shopping_data.dart';
 
-class FavoritePage extends StatefulWidget {
-  const FavoritePage({Key? key}) : super(key: key);
-
-  @override
-  _FavoritePageState createState() => _FavoritePageState();
-}
-
-class _FavoritePageState extends State<FavoritePage> {
-  List<Product> favorite = [];
-
+class FavoritePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Consumer<ShoppingData>(
       builder: (context, data, child) {
+        List<Product> favorite = data.favorite;
+        // print('ok fav');
+        // print(favorite);
         return Scaffold(
             body:
                 // (favorite.isNotEmpty)
@@ -36,12 +30,6 @@ class _FavoritePageState extends State<FavoritePage> {
                         mainAxisSpacing: 10.0,
                       ),
                       itemBuilder: (BuildContext context, int index) {
-                        print('ok <3');
-                        Provider.of<ShoppingData>(context, listen: false)
-                            .setFavorite(favorite);
-                        print('ok fav');
-                        print(favorite);
-
                         return ClothItem(
                           product: favorite[index],
                           image: favorite[index].image,

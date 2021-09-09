@@ -8,37 +8,18 @@ import 'package:shopping_app/model/network_helper.dart';
 import 'package:shopping_app/screens/main_page.dart';
 import 'package:shopping_app/widget/cloth_item.dart';
 
-import '../shopping_data.dart';
+import '../model/shopping_data.dart';
 
-class HomePage extends StatefulWidget {
-  @override
-  _HomePageState createState() => _HomePageState();
-}
-
-class _HomePageState extends State<HomePage> {
-  List<Product> products = [];
-  Future getData() async {
-    products = await NetworkHelper().fetchData();
-
-    print('ok 3');
-    // print(products);
-  }
-
-  @override
-  void didChangeDependencies() {
-    // TODO: implement didChangeDependencies
-    super.didChangeDependencies();
-    getData();
-    print('ok 4');
-  }
-
+class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-        body:
-            // (products.isNotEmpty)
-            //     ?
-            Container(
+    List<Product> products = Provider.of<ShoppingData>(context).data;
+    // print(products);
+    // print("ok products");
+    return Consumer<ShoppingData>(builder: (context, data, child) {
+      return Scaffold(
+        body: (products.isNotEmpty)
+            ? Container(
                 padding: EdgeInsets.all(12.0),
                 child: GridView.builder(
                   padding: EdgeInsets.all(12.0),
@@ -52,7 +33,7 @@ class _HomePageState extends State<HomePage> {
                   ),
                   itemBuilder: (BuildContext context, int index) {
                     // print(products);
-                    print('ok cloth');
+                    // print('ok cloth');
                     return ClothItem(
                       product: products[index],
                       title: products[index].title,
@@ -63,9 +44,10 @@ class _HomePageState extends State<HomePage> {
                     );
                   },
                 ))
-        // : Center(
-        //     child: CircularProgressIndicator(),
-        //   ),
-        );
+            : Center(
+                child: CircularProgressIndicator(),
+              ),
+      );
+    });
   }
 }

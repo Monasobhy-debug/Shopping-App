@@ -12,12 +12,11 @@ class NetworkHelper {
       if (response.statusCode == 200) {
         var data = jsonDecode(response.body);
         // print(data);
-        print('ok 1');
+
         for (var u in data) {
           products.add(Product.fromJson(u));
-          // data.map((e) => products.add(Product.fromJson(u))).toList();
         }
-        print('ok 11');
+        // print('ok 1');
         // print(products);
         return products;
       }

@@ -23,10 +23,11 @@ class Product {
   }
   void toBeFav() {
     this.isFav = !this.isFav;
+    // print('fav = $isFav');
   }
 
   void toBeCart() {
     this.isCart = !this.isCart;
-    print('card = $isCart');
+    // print('card = $isCart');
   }
 }
